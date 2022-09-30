@@ -1,5 +1,7 @@
 cardnum = input("ENTER YOUR CARD NUMBER")
 cardnumdigit = cardnum.isdigit()
+while cardnumdigit == False:
+    cardnum = input("Only numbers allowed. ENTER YOUR CARD NUMBER")
 while len(cardnum) > 16:
     cardnum = input("Too long. ENTER YOUR CARD NUMBER")
 while len(cardnum) < 16:
@@ -36,3 +38,4 @@ if __name__ == "__main__":
       print("VALID NUMBER ENTERED")
     else:
       print("INVALID")
+
