@@ -1,10 +1,3 @@
-# Skeleton Program for the AQA AS1 Summer 2020 examination
-# this code should be used in conjunction with the Preliminary Material
-# written by the AQA AS1 Programmer Team
-# developed in a Python 3 environment
-
-# Version number: 0.0.0
-
 EMPTY_STRING = ""
 MAX_WIDTH = 100
 MAX_HEIGHT = 100
@@ -134,10 +127,29 @@ def VerticalFlip(Grid, Header):
 
 
 def DoubleFlip(Grid, Header):
+  Mirror = Grid
+  for Row in range(Header.Height):
+    for Column in range(Header.Width):
+      if (Header.Width -  Column) >= Column:
+        temporary = Mirror[Row][Column]
+        Mirror[Row][Column] = Mirror[Row][Header.Width - Column-1]
+        Mirror[Row][Header.Width - Column-1] = temporary
 
+  Mirror = Grid
+  for AAColumn in range(Header.Width):
+    for AARow in range(Header.Height):
+      if (Header.Height -  AARow) >= AARow:
+        temporary = Mirror[AARow][AAColumn]
+        Mirror[AARow][AAColumn] = Mirror[Header.Height - AARow - 1][AAColumn]
+        Mirror[Header.Height - AARow - 1][AAColumn] = temporary
 
-
-
+  print()
+  PrintHeading(Header.Title)
+  for ThisRow in range(Header.Height):
+    for ThisColumn in range(Header.Width):
+      print(Mirror[ThisRow][ThisColumn], end='')
+    print()
+  
 def DisplayError(ErrorMessage):
   """
    Parameters: string
