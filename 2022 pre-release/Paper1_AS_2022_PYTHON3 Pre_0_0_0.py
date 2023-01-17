@@ -113,7 +113,6 @@ def LoadPuzzle(PuzzleGrid, Puzzle, Answer, Solution):
      Parameters: PuzzleGrid (2D array), Puzzle (1D array), Answer (1D array), Solution (1D array)
      Return Type: returns PuzzleGrid (2D array), Puzzle (1D array), Answer (1D array), Solution (1D array)
      Description: Asks user to input name of puzzle. Runs LoadPuzzleFile which uses the PuzzleName entered by user to read the file. Runs LoadSolution which reads puzzle1S which contains the solution to the puzzle. Runs TransferPuzzleIntoGrid which is able to take the 3 integers contained in the file and place values in the puzzle grid accordingly. 
-
   """
   PuzzleGrid, Puzzle, Answer, Solution = ResetDataStructures()
   PuzzleName = input("Enter puzzle name to load: ")
@@ -191,6 +190,11 @@ def DisplayGrid(PuzzleGrid):
   print()
 
 def SolvePuzzle(PuzzleGrid, Puzzle, Answer):
+"""
+     Parameters: PuzzleGrid (2D array), Puzzle (1D array), Answer (1D array)
+     Return type: returns PuzzleGrid (2D array) and Answer (1D array)
+     Description: Allows user to enter the row, column, and digit of his desired answer, allows user to essentially solve the puzzle
+"""
   CellInfoS = "0"
   DisplayGrid(PuzzleGrid)
   if PuzzleGrid[0][0] != 'X':
@@ -236,6 +240,11 @@ def SolvePuzzle(PuzzleGrid, Puzzle, Answer):
   return PuzzleGrid, Answer
 
 def DisplayMenu():
+"""
+     Parameters: None 
+     Return type: This is a procedure and doesnt return anything
+     Description: Prints the Menu options for the user.
+"""
   print()
   print("Main Menu")
   print("=========")
@@ -248,12 +257,22 @@ def DisplayMenu():
   print()
 
 def GetMenuOption():
+"""
+     Parameters: None 
+     Return type: Choice (1 letter String)
+     Description: Allows user to enter their choice for the menu options
+"""
   Choice = EMPTY_STRING
   while len(Choice) != 1:
     Choice = input("Enter your choice: ")
   return Choice[0]
 
 def KeepPuzzle(PuzzleGrid, Answer):
+"""
+     Parameters: PuzzleGrid (1D array), Answer (1D array)
+     Return type: This is a procedure and doesnt return anything
+     Description: Allows user to keep his answers.
+"""
   if PuzzleGrid[0][0] != 'X':
     print("No puzzle loaded")
   else:
@@ -268,6 +287,11 @@ def KeepPuzzle(PuzzleGrid, Answer):
       print("No answers to keep")
 
 def CheckSolution(PuzzleGrid, Answer, Solution):
+"""
+     Parameters: PuzzleGrid (2D array), Answer (1D array), Solution (1D array) 
+     Return type: ErrorCount (Integer), Solved (Boolean)
+     Description: Compares user's answers to SPACE (nothing) to check if incomplete and to Solution to check if correct.
+"""
   ErrorCount = 0
   Solved = False
   Correct = True
@@ -290,10 +314,20 @@ def CheckSolution(PuzzleGrid, Answer, Solution):
   return ErrorCount, Solved
 
 def CalculateScore(Answer, ErrorCount):
+"""
+     Parameters: Answer (1D array), ErrorCount(Integer)
+     Return type: Answer (1D array)
+     Description: Calculates a score by minusing the number of errors from the amount of correct digits he has inputed into the puzzle
+"""
   Answer[1] = str(int(Answer[1]) - ErrorCount)
   return Answer
 
-def DisplayResults(Answer): 
+def DisplayResults(Answer):
+"""
+     Parameters: Answer (1D array)
+     Return type: This is a procedure and doesnt return anything.
+     Description: Answer[1] is score. Answer[0] is the puzzle's name. Answer[Line] is the answer inputed by user. Checks if user made a start
+"""
   if int(Answer[2]) > 0:
     print(f"Your score is {Answer[1]}")
     print(f"Your solution for {Answer[0]} was: ")
@@ -303,6 +337,11 @@ def DisplayResults(Answer):
     print("You didn't make a start")
 
 def NumberPuzzle():
+"""
+     Parameters: None
+     Return type: This is a procedure and doesnt return anything
+     Description: Start of the code (top of hierarchy chart). Executes subroutine depending on the user's input. Prints statements based on the score and prints 5 random statements depending on the user's input for menuoption (Nice one AQA you bunch of melons)
+"""
   Finished = False
   PuzzleGrid, Puzzle, Answer, Solution = ResetDataStructures()
   while not Finished:
